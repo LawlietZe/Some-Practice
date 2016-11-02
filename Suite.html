@@ -21,14 +21,34 @@
 	function useless(callback){
 		return callback;
 	}
-	window.onload = function(){ 
+	// window.onload = function(){ 
 		// assert(true, "The test suite is running");
 		// assert(false, "Fail!");
 		// var text = 'Domo arigato!';
 		// assert(useless(function(){return text;}) === text, "The useless function works ! " + text);
-	};
+	// };
 	function isNimble(){return true;}
 	assert(typeof window.isNimble === "function", "isNimble() defined! ");
+	assert(isNimble.name === "isNimble", "isNimble has a name");
+
+	var canFly = function(){
+		return true;
+	}
+	assert(typeof window.canFly === "function", "canFly() defined");
+	assert(canFly.name === "", "canFly has no name  SO SAD");
+
+	window.isDeadly = function(){return true;}
+	assert(typeof window.isDeadly === "function", "isDeadly() has defined");
+	function outer(){
+		assert(typeof inner === "function", "inner() in scope before declaration");
+		function inner(){}
+		assert(typeof inner === "function", "inner() in scope after declaration");
+		assert(window.inner === undefined, "inner not in global scope");	
+	}
+	outer();
+	assert(window.inner === undefined, "inner() still not in global");
+	window.wieldsSword = function swingsSword(){return true;};
+	assert(window.wieldsSword.name === "swingsSword", "wieldsSword's real name is swingsSword !");
 </script>
 </body>
 </html>
