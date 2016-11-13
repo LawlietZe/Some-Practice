@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test Suite</title>
+<style type="text/css">
+	#result li.pass{color: green;}
+	#result li.fail{color: red;}
+</style>
+</head>
+<body>
+<ul id="result">
+	
+</ul>
+<script type="text/javascript">
+	function assert(value, desc){
+	  var li = document.createElement("li");
+	  li.className = value ? "pass" : "fail";
+	  li.appendChild(document.createTextNode(desc));
+	  document.getElementById("result").appendChild(li);
+	}
+	function forEach(list, callback){
+		for(var n = 0; n< list.length; n++){
+			callback.call(list[n], n);	
+		}	
+	}
+	var weapons = ['EXchanliba','King','Fading'];
+	forEach(
+		weapons,
+		function(index){
+			assert(this == weapons [index],"Got hte expect value of weapons" + weapons [index]);
+		});
+</script>
+</body>
+</html>
