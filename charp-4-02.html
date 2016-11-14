@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test Suite</title>
+<style type="text/css">
+	#result li.pass{color: green;}
+	#result li.fail{color: red;}
+</style>
+</head>
+<body>
+<ul id="result">
+	
+</ul>
+<script type="text/javascript">
+	function assert(value, desc){
+	  var li = document.createElement("li");
+	  li.className = value ? "pass" : "fail";
+	  li.appendChild(document.createTextNode(desc));
+	  document.getElementById("result").appendChild(li);
+	}
+	function isPalindrome(text){
+		if(text.length <=1 ) return true;
+		if (text.charAt(0) != text.charAt(text.length - 1)) return false;
+		return isPalindrome(text.substr(1, text.length -2));
+	}
+/*	assert(isPalindrome("txt"),"this is a palindrome"); */
+	function chirp(n){
+		return n > 1 ? chirp(n - 1) + "-chirp" : "chirp";
+	}
+	assert(chirp(3) === "chirp-chirp-chirp", "Calling the named function comes naturally");
+</script>
+</body>
+</html>

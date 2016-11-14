@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test Suite</title>
+<style type="text/css">
+	#result li.pass{color: green;}
+	#result li.fail{color: red;}
+</style>
+</head>
+<body>
+<ul id="result">
+	
+</ul>
+<script type="text/javascript">
+	function assert(value, desc){
+	  var li = document.createElement("li");
+	  li.className = value ? "pass" : "fail";
+	  li.appendChild(document.createTextNode(desc));
+	  document.getElementById("result").appendChild(li);
+	}
+	var ninja = {
+		chirp : function signal(n){
+			return n > 1 ? signal(n - 1) + "-chirp" : "chirp";
+		}
+	};
+	var samurai = {chirp: ninja.chirp };
+	ninja = {};
+	assert(samurai.chirp(3) == "chirp-chirp-chirp", " Is this going work?");
+</script>
+</body>
+</html>
