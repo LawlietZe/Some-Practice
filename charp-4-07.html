@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test Suite</title>
+<style type="text/css">
+	#result li.pass{color: green;}
+	#result li.fail{color: red;}
+</style>
+</head>
+<body>
+<ul id="result">
+	
+</ul>
+<script type="text/javascript">
+	function assert(value, desc){
+	  var li = document.createElement("li");
+	  li.className = value ? "pass" : "fail";
+	  li.appendChild(document.createTextNode(desc));
+	  document.getElementById("result").appendChild(li);
+	}
+	var store = {
+		nextId : 1,
+		cache: {},
+		add: function(fn){
+			if(!fn.id){
+				fn.id = store.nextId++;
+				return !!(store.cache[fn.id] = fn);
+			}
+		}
+	};
+	function ninja(){};
+	assert(store.add(ninja), "Function was safely added!");
+	assert(!store.add(ninja), "But it only add once!");
+</script>
+</body>
+</html>
